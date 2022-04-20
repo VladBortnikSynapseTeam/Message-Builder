@@ -84,7 +84,8 @@ export class FieldComponent implements OnInit {
     this.isOpenedAdd = !this.isOpenedAdd;
   }
 
-  doubleClick(){
+  doubleClick(id:string){
     this.isOpenedSidenav = true;
+    this.messages.dispatch(MessageActions.setTargetMessage({id}))
   }
 }

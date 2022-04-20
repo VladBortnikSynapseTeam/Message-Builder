@@ -1,21 +1,26 @@
 <div class="sidebar-container">
-    <header class="sidebar-header">
-        <span class="sidebar-header-title">Send Message</span>
-    </header>
-    <mat-slide-toggle>Start</mat-slide-toggle>
-    <span class="hint">Use buttons below to add text and pictures</span>
-    <div class="add-buttons">
-        <div class="add-btn">
-            <mat-icon>format_align_left</mat-icon>
-            + Text
+    <ng-container *ngIf="(targetMessage | async)?.id == ''; else target">
+        <p class="hint">Select any message to manage(Double-Click)</p>
+    </ng-container>
+    <ng-template #target>
+        <header class="sidebar-header">
+            <span class="sidebar-header-title">Send Message</span>
+        </header>
+        <mat-slide-toggle>Start</mat-slide-toggle>
+        <span class="hint">Use buttons below to add text and pictures</span>
+        <div class="add-buttons">
+            <div class="add-btn">
+                <mat-icon>format_align_left</mat-icon>
+                + Text
+            </div>
+            <div class="add-btn">
+                <mat-icon>add_photo_alternate</mat-icon>
+                + Image
+            </div>
+            <div class="add-btn">
+                <mat-icon class="stop-icon">stop</mat-icon>
+                + Card
+            </div>
         </div>
-        <div class="add-btn">
-            <mat-icon>add_photo_alternate</mat-icon>
-            + Image
-        </div>
-        <div class="add-btn">
-            <mat-icon class="stop-icon">stop</mat-icon>
-            + Card
-        </div>
-    </div>
+    </ng-template>
 </div>

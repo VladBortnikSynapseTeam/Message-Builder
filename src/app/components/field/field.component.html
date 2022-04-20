@@ -10,7 +10,7 @@
         (mousedown)="messageMouseDown($event)" 
         (mouseup)="messageMouseUp($event)"
         (mousemove)="messageMouseMove($event,message.id)"
-        (dblclick)="doubleClick()"
+        (dblclick)="doubleClick(message.id)"
         [style.transform]="'translate(' + message.xPos + 'px, ' + message.yPos + 'px)'"
         >
             <div class="card-header">
