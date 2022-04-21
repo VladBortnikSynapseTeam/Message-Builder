@@ -5,6 +5,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 
@@ -18,7 +19,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    MatSlideToggleModule    
+    MatSlideToggleModule,
+    MatDividerModule    
   ]
 })
 export class SharedMaterialModule { }

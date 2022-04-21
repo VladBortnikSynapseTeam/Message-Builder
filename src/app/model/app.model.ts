@@ -4,10 +4,18 @@ export interface IMessage{
     isStartMessage: boolean;
     xPos: number;
     yPos: number;
-    type: "message" | "randomizer"
 }
 
 export interface IMessageStore{
     messageList: IMessage[];
     targetMessage: IMessage;
+    randomizeList: IRandomize[];
+}
+
+export interface IRandomize{
+    id: string;
+    AElement: string;
+    BElement: string;
+    xPos: number;
+    yPos: number;
 }

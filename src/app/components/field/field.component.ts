@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { IMessage } from 'src/app/model/app.model';
+import { IMessage, IRandomize } from 'src/app/model/app.model';
 import { MessageActions } from 'src/app/store/actions/app.action';
 import { MessageSelectors } from 'src/app/store/selectors/app.selector';
 
@@ -19,15 +19,19 @@ export class FieldComponent implements OnInit {
   private startMousePositionY = 0;
   private startMouseMessagePositionX = 0;
   private startMouseMessagePositionY = 0;
+  private startRndMessagePositionX = 0;
+  private startRndMessagePositionY = 0;
   isCanvasMove = false;
   isElementMove = false;
-  messagesArray!: Observable<IMessage[]>;
+  messagesArray: Observable<IMessage[]>;
+  randomizersArray: Observable<IRandomize[]>;
   isOpenedSidenav = false;
   isOpenedAdd = false;
-  messageId = "";
+
 
   constructor(private messages: Store) {
     this.messagesArray = this.messages.select(MessageSelectors.messages);
+    this.randomizersArray = this.messages.select(MessageSelectors.randomizers);
   }
 
   ngOnInit(): void {
@@ -72,11 +76,34 @@ export class FieldComponent implements OnInit {
 
   messageMouseMove(mouseEvent: MouseEvent, msgID: string){
     if(this.isElementMove){
-      let mzpx = mouseEvent.clientX - this.startMouseMessagePositionX;
-      let mzpy = mouseEvent.clientY - this.startMouseMessagePositionY;
+      const mzpx = mouseEvent.clientX - this.startMouseMessagePositionX;
+      const mzpy = mouseEvent.clientY - this.startMouseMessagePositionY;
       this.messages.dispatch(MessageActions.moveMessage({x:mzpx,y:mzpy,id:msgID}))
       this.startMouseMessagePositionX = mouseEvent.clientX;
       this.startMouseMessagePositionY = mouseEvent.clientY;
+    }
+  }
+
+  randomizerMouseDown(mouseEvent: MouseEvent){
+    this.isElementMove = true;
+    this.startRndMessagePositionX = mouseEvent.clientX;
+    this.startRndMessagePositionY = mouseEvent.clientY;
+  }
+
+  randomizerMouseUp(mouseEvent: MouseEvent){
+    this.isElementMove = false;
+    this.startRndMessagePositionX = 0;
+    this.startRndMessagePositionY = 0;
+  }
+
+  randomizerMouseMove(mouseEvent: MouseEvent, rndID: string){
+    if(this.isElementMove){
+      const mzpx = mouseEvent.clientX - this.startRndMessagePositionX;
+      const mzpy = mouseEvent.clientY - this.startRndMessagePositionY;
+      this.messages.dispatch(MessageActions.moveRandomize({x:mzpx,y:mzpy,id:rndID}))
+      this.startRndMessagePositionX = mouseEvent.clientX;
+      this.startRndMessagePositionY = mouseEvent.clientY;
+      console.log(rndID);
     }
   }
 

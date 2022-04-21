@@ -12,8 +12,13 @@ const messageReducer = createReducer(
                 ...state,
                 messageList: state.messageList.map(msg => msg.id == id ? {...msg, xPos: msg.xPos + x, yPos: msg.yPos + y} : msg)
             };
-        }
-    ),
+    }),
+    on(MessageActions.moveRandomize, (state, {x,y,id}) => {
+        return{
+            ...state,
+            randomizeList: state.randomizeList.map(rnd => rnd.id == id ? {...rnd, xPos: rnd.xPos + x, yPos: rnd.yPos + y} : rnd)
+        };
+    }),
     on(MessageActions.setTargetMessage, (state, {id})=>{
         return {
             ...state,

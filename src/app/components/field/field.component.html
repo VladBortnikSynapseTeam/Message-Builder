@@ -34,6 +34,26 @@
                 <button class="delete-btn"><mat-icon>delete_forever</mat-icon></button>
             </div>
         </div>
+        <div class="randomize-container"
+        *ngFor="let randomize of (randomizersArray | async)"
+        [style.transform]="'translate(' + randomize.xPos + 'px, ' + randomize.yPos + 'px)'"
+        (mousedown)="randomizerMouseDown($event)" 
+        (mouseup)="randomizerMouseUp($event)"
+        (mousemove)="randomizerMouseMove($event,randomize.id)"
+        >
+            <div class="randomize-header">
+                <span class="send-message-title">Randomizer</span>
+            </div>
+            <div class="randomize-variants">
+                <div class="randomize-variant"><span>A</span> <span>50%</span></div>
+                <mat-divider></mat-divider>
+                <div class="randomize-variant"><span>B</span> <span>50%</span></div>
+            </div>
+            <div class="item-btn-container">
+                <button class="copy-btn"><mat-icon>queue</mat-icon></button>
+                <button class="delete-btn"><mat-icon>delete_forever</mat-icon></button>
+            </div>
+        </div>
     </div>
 </div>
 <div class="add-elements-btn" (click)="addElement()">

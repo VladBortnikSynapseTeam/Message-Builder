@@ -5,4 +5,5 @@ export namespace MessageSelectors {
     export const state = createFeatureSelector<IMessageStore>('messages');
     export const messages = createSelector(state, (state)=> state.messageList);
     export const targetMessage = createSelector(state, (state)=> state.targetMessage);
+    export const randomizers = createSelector(state, (state)=> state.randomizeList);
 }
