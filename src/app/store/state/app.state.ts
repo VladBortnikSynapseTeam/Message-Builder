@@ -5,8 +5,8 @@ export const initialState: IMessageStore = {
     messageList: [
         {
             id: generateGuid(),
-            text: ['sample Text'],
-            isStartMessage: true,
+            text: [],
+            isStartMessage: false,
             xPos: 10050,
             yPos: 9600,
 

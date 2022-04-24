@@ -25,6 +25,7 @@ p{
     border-radius: 5px;
     border: 2px solid silver;
     transition: 0.03s linear;
+    position: absolute;
   }
   .message-card:hover {
     border: 2px solid royalblue;
@@ -50,6 +51,7 @@ p{
     border-radius: 5px;
     border: 2px solid #80AB35;
     transition: 0.03s linear;
+    position: absolute;
   }
   .randomize-container:hover {
     border: 2px solid royalblue;

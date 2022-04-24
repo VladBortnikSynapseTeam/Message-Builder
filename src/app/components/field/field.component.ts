@@ -84,6 +84,18 @@ export class FieldComponent implements OnInit {
     }
   }
 
+  addNewMessage(){
+    this.messages.dispatch(MessageActions.addMessage())
+  }
+
+  addNewRandomize(){
+    this.messages.dispatch(MessageActions.addRandomize())
+  }
+
+  deleteMessage(id: string){
+    this.messages.dispatch(MessageActions.deleteMessage({id}))
+  }
+
   randomizerMouseDown(mouseEvent: MouseEvent){
     this.isElementMove = true;
     this.startRndMessagePositionX = mouseEvent.clientX;
@@ -105,6 +117,10 @@ export class FieldComponent implements OnInit {
       this.startRndMessagePositionY = mouseEvent.clientY;
       console.log(rndID);
     }
+  }
+
+  deleteRandomize(id: string){
+    this.messages.dispatch(MessageActions.deleteRandomizer({id}))
   }
 
   addElement(){
