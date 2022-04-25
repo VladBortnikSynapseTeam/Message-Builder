@@ -21,12 +21,17 @@ export class FieldComponent implements OnInit {
   private startMouseMessagePositionY = 0;
   private startRndMessagePositionX = 0;
   private startRndMessagePositionY = 0;
+  public scrollScale = 1;
+  private MAX_SCALE = 1.25;
+  private MIN_SCALE = 0.75;
   isCanvasMove = false;
   isElementMove = false;
   messagesArray: Observable<IMessage[]>;
   randomizersArray: Observable<IRandomize[]>;
   isOpenedSidenav = false;
   isOpenedAdd = false;
+ 
+
 
 
   constructor(private messages: Store) {
@@ -78,7 +83,7 @@ export class FieldComponent implements OnInit {
     if(this.isElementMove){
       const mzpx = mouseEvent.clientX - this.startMouseMessagePositionX;
       const mzpy = mouseEvent.clientY - this.startMouseMessagePositionY;
-      this.messages.dispatch(MessageActions.moveMessage({x:mzpx,y:mzpy,id:msgID}))
+      this.messages.dispatch(MessageActions.moveMessage({x: (mzpx / this.scrollScale) ,y: (mzpy / this.scrollScale) ,id:msgID}))
       this.startMouseMessagePositionX = mouseEvent.clientX;
       this.startMouseMessagePositionY = mouseEvent.clientY;
     }
@@ -102,7 +107,7 @@ export class FieldComponent implements OnInit {
     this.startRndMessagePositionY = mouseEvent.clientY;
   }
 
-  randomizerMouseUp(mouseEvent: MouseEvent){
+  randomizerMouseUp(){
     this.isElementMove = false;
     this.startRndMessagePositionX = 0;
     this.startRndMessagePositionY = 0;
@@ -112,7 +117,7 @@ export class FieldComponent implements OnInit {
     if(this.isElementMove){
       const mzpx = mouseEvent.clientX - this.startRndMessagePositionX;
       const mzpy = mouseEvent.clientY - this.startRndMessagePositionY;
-      this.messages.dispatch(MessageActions.moveRandomize({x:mzpx,y:mzpy,id:rndID}))
+      this.messages.dispatch(MessageActions.moveRandomize({x: (mzpx / this.scrollScale) ,y: (mzpy / this.scrollScale) ,id:rndID}))
       this.startRndMessagePositionX = mouseEvent.clientX;
       this.startRndMessagePositionY = mouseEvent.clientY;
       console.log(rndID);
@@ -130,5 +135,22 @@ export class FieldComponent implements OnInit {
   doubleClick(id:string){
     this.isOpenedSidenav = true;
     this.messages.dispatch(MessageActions.setTargetMessage({id}))
+  }
+
+  canvasOnScroll(event: any){
+    if(event.deltaY > 0 && this.scrollScale > this.MIN_SCALE){
+      this.scrollScale -= 0.05;
+    }
+    else if( event.deltaY < 0 && this.scrollScale < this.MAX_SCALE){
+      this.scrollScale += 0.05;
+    }
+  }
+
+  scaleUp(){
+    this.scrollScale += 0.05;
+  }
+
+  scaleDown(){
+    this.scrollScale -= 0.05;
   }
 }

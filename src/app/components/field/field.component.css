@@ -8,6 +8,7 @@
     width: 20000px;
     height: 20000px;
     background-color: whitesmoke;
+    display: block;
   }
 
 p{
@@ -266,4 +267,58 @@ p{
     height: 30px;
     margin-right: 5px;
   }
-  
+  .scale-container{
+    width: 50px;
+    position: absolute;
+    top: 350px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+  }
+  .scale-btn,.scaleBtnDisabled{
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50% ;
+    cursor: pointer;
+  }
+  .scaleBtnDisabled{
+    opacity: 0.5;
+    cursor: default;
+  }
+  .scale-anim{
+    width: 40px;
+    height: 80px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .anim-element{
+    width: 1px;
+    height: 20px;
+    position: relative;
+    background-color: black;
+    animation: wheel 1s linear 0.2s infinite;
+  }
+  @keyframes wheel {
+    0%{
+      top: 20px;
+      opacity: 0;
+    }
+    30%{
+      top: 25px;
+      opacity: 1;
+    }
+    100%{
+      top: 30px;
+      opacity: 0;
+    }
+  }

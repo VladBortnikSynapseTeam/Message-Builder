@@ -3,7 +3,8 @@
     (mousedown)="mouseDown($event)"
     (mouseup)="mouseUp($event)"
     (mousemove)="mouseMove($event)" 
-    [style.transform]="'translate(' + -positionX + 'px, ' + -positionY + 'px)'"
+    [style.transform]="'translate(' + -positionX + 'px, ' + -positionY + 'px)' + 'scale('+ scrollScale +')'"
+    (wheel)="canvasOnScroll($event)"
     >
         <div class="message-card" 
         *ngFor="let message of (messagesArray | async)" 
@@ -38,7 +39,7 @@
         *ngFor="let randomize of (randomizersArray | async)"
         [style.transform]="'translate(' + randomize.xPos + 'px, ' + randomize.yPos + 'px)'"
         (mousedown)="randomizerMouseDown($event)" 
-        (mouseup)="randomizerMouseUp($event)"
+        (mouseup)="randomizerMouseUp()"
         (mousemove)="randomizerMouseMove($event,randomize.id)"
         >
             <div class="randomize-header">
@@ -88,4 +89,12 @@
         </button>
     </mat-sidenav-content>
 </mat-sidenav-container>
+
+<div class="scale-container">
+    <button class="scale-btn" (click)="scaleUp()" [disabled]="scrollScale > 1.25" [ngClass]="{scaleBtnDisabled: (scrollScale > 1.25)}" >+</button>
+    <div class="scale-anim">
+        <div class="anim-element"></div>
+    </div>
+    <button class="scale-btn" (click)="scaleDown()" [disabled]="scrollScale < 0.75" [ngClass]="{scaleBtnDisabled: (scrollScale < 0.75)}" >-</button>
+</div>
         
