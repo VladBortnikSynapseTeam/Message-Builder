@@ -42,7 +42,8 @@ const messageReducer = createReducer(
             text: [],
             isStartMessage: false,
             xPos: 10050,
-            yPos: 9600
+            yPos: 9600,
+            layer: 0
         }
         return {
             ...state,
@@ -55,11 +56,19 @@ const messageReducer = createReducer(
             AElement: "",
             BElement: "",
             xPos: 10000,
-            yPos: 9600
+            yPos: 9600,
+            layer: 0
         }
         return{
             ...state,
             randomizeList: [...state.randomizeList, newRandomize]
+        }
+    }),
+    on(MessageActions.elementLayerUp, (state, {id})=>{
+        return{
+            ...state,
+            messageList: state.messageList.map(msg => msg.id == id ? {...msg, layer: 1} : {...msg, layer: 0}),
+            randomizeList: state.randomizeList.map(rnd => rnd.id == id ? {...rnd, layer: 1} : {...rnd, layer: 0})
         }
     })
 )

@@ -8,11 +8,12 @@
     >
         <div class="message-card" 
         *ngFor="let message of (messagesArray | async)" 
-        (mousedown)="messageMouseDown($event)" 
+        (mousedown)="messageMouseDown($event, message.id)" 
         (mouseup)="messageMouseUp($event)"
         (mousemove)="messageMouseMove($event,message.id)"
         (dblclick)="doubleClick(message.id)"
         [style.transform]="'translate(' + message.xPos + 'px, ' + message.yPos + 'px)'"
+        [style.z-index]="message.layer"
         >
             <div class="card-header">
                 <span class="send-message-title">Send Message</span>
@@ -38,6 +39,7 @@
         <div class="randomize-container"
         *ngFor="let randomize of (randomizersArray | async)"
         [style.transform]="'translate(' + randomize.xPos + 'px, ' + randomize.yPos + 'px)'"
+        [style.z-index]="randomize.layer"
         (mousedown)="randomizerMouseDown($event)" 
         (mouseup)="randomizerMouseUp()"
         (mousemove)="randomizerMouseMove($event,randomize.id)"

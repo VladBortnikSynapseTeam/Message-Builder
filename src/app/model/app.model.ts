@@ -4,6 +4,7 @@ export interface IMessage{
     isStartMessage: boolean;
     xPos: number;
     yPos: number;
+    layer: number;
 }
 
 export interface IMessageStore{
@@ -18,4 +19,5 @@ export interface IRandomize{
     BElement: string;
     xPos: number;
     yPos: number;
+    layer: number;
 }

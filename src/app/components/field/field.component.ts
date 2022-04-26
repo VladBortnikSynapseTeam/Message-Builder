@@ -67,10 +67,11 @@ export class FieldComponent implements OnInit {
     }
   }
   
-  messageMouseDown(mouseEvent: MouseEvent){
+  messageMouseDown(mouseEvent: MouseEvent, id: string){
     this.isElementMove = true;
     this.startMouseMessagePositionX = mouseEvent.clientX;
     this.startMouseMessagePositionY = mouseEvent.clientY;
+    
   }
 
   messageMouseUp(mouseEvent: MouseEvent){
@@ -81,6 +82,7 @@ export class FieldComponent implements OnInit {
 
   messageMouseMove(mouseEvent: MouseEvent, msgID: string){
     if(this.isElementMove){
+      this.messages.dispatch(MessageActions.elementLayerUp({id:msgID}))
       const mzpx = mouseEvent.clientX - this.startMouseMessagePositionX;
       const mzpy = mouseEvent.clientY - this.startMouseMessagePositionY;
       this.messages.dispatch(MessageActions.moveMessage({x: (mzpx / this.scrollScale) ,y: (mzpy / this.scrollScale) ,id:msgID}))
@@ -98,6 +100,8 @@ export class FieldComponent implements OnInit {
   }
 
   deleteMessage(id: string){
+    console.log("DELETE MESSAGE");
+    
     this.messages.dispatch(MessageActions.deleteMessage({id}))
   }
 
@@ -115,6 +119,7 @@ export class FieldComponent implements OnInit {
 
   randomizerMouseMove(mouseEvent: MouseEvent, rndID: string){
     if(this.isElementMove){
+      this.messages.dispatch(MessageActions.elementLayerUp({id:rndID}))
       const mzpx = mouseEvent.clientX - this.startRndMessagePositionX;
       const mzpy = mouseEvent.clientY - this.startRndMessagePositionY;
       this.messages.dispatch(MessageActions.moveRandomize({x: (mzpx / this.scrollScale) ,y: (mzpy / this.scrollScale) ,id:rndID}))

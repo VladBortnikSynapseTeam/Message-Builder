@@ -9,17 +9,11 @@ export const initialState: IMessageStore = {
             isStartMessage: false,
             xPos: 10050,
             yPos: 9600,
-
+            layer: 0
         },
     ],
     randomizeList: [
-        {
-            id: generateGuid(),
-            xPos: 10100,
-            yPos: 9650,
-            AElement: '',
-            BElement: ''
-        }
+       
     ],
     targetMessage: {
         id: "",
@@ -27,5 +21,6 @@ export const initialState: IMessageStore = {
         isStartMessage: false,
         xPos: 0,
         yPos: 0,
+        layer: 0
     }  
 } 

@@ -10,4 +10,5 @@ export namespace MessageActions {
     export const deleteRandomizer = createAction("DELETE_RANDOMIZER", props<{id: string}>());
     export const addMessage = createAction("ADD_MESSAGE");
     export const addRandomize = createAction("ADD_RANDOMIZE");
+    export const elementLayerUp = createAction('LAYER_UP', props<{id: string}>())
 }
