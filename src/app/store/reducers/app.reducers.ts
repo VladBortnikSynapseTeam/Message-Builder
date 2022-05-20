@@ -1,4 +1,5 @@
 import { Action, createReducer, on } from "@ngrx/store";
+import { mergeScan } from "rxjs";
 import { generateGuid } from "src/app/helpers/guid";
 import { IMessage, IMessageStore, IRandomize } from "src/app/model/app.model";
 import { MessageActions } from "../actions/app.action";
@@ -21,7 +22,7 @@ const messageReducer = createReducer(
     on(MessageActions.setTargetMessage, (state, {id})=>{
         return {
             ...state,
-            targetMessage: state.messageList.map(msg => msg.id == id ? {...msg}: msg)[0]
+            targetMessage: state.messageList.filter(msg => msg.id == id)[0]
         }
     }),
     on(MessageActions.deleteMessage, (state, {id})=> {
@@ -69,6 +70,16 @@ const messageReducer = createReducer(
             ...state,
             messageList: state.messageList.map(msg => msg.id == id ? {...msg, layer: 1} : {...msg, layer: 0}),
             randomizeList: state.randomizeList.map(rnd => rnd.id == id ? {...rnd, layer: 1} : {...rnd, layer: 0})
+        }
+    }),
+    on(MessageActions.setStartMessage, (state,{id})=> {
+        return {
+            ...state,
+            messageList: state.messageList.map(msg => msg.id == id ? {...msg, isStartMessage: true} : {...msg, isStartMessage: false}),
+            targetMessage: {
+                ...state.targetMessage,
+                isStartMessage: true
+            }
         }
     })
 )

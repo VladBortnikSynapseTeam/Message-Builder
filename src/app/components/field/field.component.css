@@ -302,6 +302,24 @@ p{
     display: flex;
     justify-content: center;
   }
+  .first-message-container{
+    position: fixed;
+    padding: 5px;
+    background-color:#3DA43D;
+    font-size: 13px;
+    color: white;
+    border-radius: 5px;
+    top:-25px ;
+    left: 103px ;
+  }
+  .first-message-container::after{
+    content: "";
+    position: absolute;
+    border: 47px solid transparent;
+    border-top: 10px solid #3DA43D;
+    top: 24px;
+    left: 0;
+  }
   .anim-element{
     width: 1px;
     height: 20px;

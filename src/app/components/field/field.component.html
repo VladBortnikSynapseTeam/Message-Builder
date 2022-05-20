@@ -26,14 +26,15 @@
             <!-- <div class="click-to-add-text">
                 <mat-icon>format_align_left</mat-icon>
                 <span class="click-text">Click to add text in sidebar</span>
-
-                
             </div> -->
             
             </div>
             <div class="item-btn-container">
                 <button class="copy-btn"><mat-icon>queue</mat-icon></button>
                 <button class="delete-btn" (click)="deleteMessage(message.id)"><mat-icon>delete_forever</mat-icon></button>
+            </div>
+            <div class="first-message-container" *ngIf="message.isStartMessage">
+                Start Message
             </div>
         </div>
         <div class="randomize-container"

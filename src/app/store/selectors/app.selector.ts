@@ -6,4 +6,5 @@ export namespace MessageSelectors {
     export const messages = createSelector(state, (state)=> state.messageList);
     export const targetMessage = createSelector(state, (state)=> state.targetMessage);
     export const randomizers = createSelector(state, (state)=> state.randomizeList);
+    export const targetID = createSelector(state, (state)=> state.targetMessage.id);
 }

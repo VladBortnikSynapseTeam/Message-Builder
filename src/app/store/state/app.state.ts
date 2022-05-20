@@ -5,7 +5,7 @@ export const initialState: IMessageStore = {
     messageList: [
         {
             id: generateGuid(),
-            text: [],
+            text: [''],
             isStartMessage: false,
             xPos: 10050,
             yPos: 9600,
@@ -17,7 +17,7 @@ export const initialState: IMessageStore = {
     ],
     targetMessage: {
         id: "",
-        text: [''],
+        text: [],
         isStartMessage: false,
         xPos: 0,
         yPos: 0,

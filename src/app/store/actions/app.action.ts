@@ -11,4 +11,6 @@ export namespace MessageActions {
     export const addMessage = createAction("ADD_MESSAGE");
     export const addRandomize = createAction("ADD_RANDOMIZE");
     export const elementLayerUp = createAction('LAYER_UP', props<{id: string}>())
+    export const setStartMessage = createAction('SET_START_MESSAGE', props<{id: string}>())
+    export const addText = createAction("ADD_TEXT", props<{text: string,id: string}>())
 }
